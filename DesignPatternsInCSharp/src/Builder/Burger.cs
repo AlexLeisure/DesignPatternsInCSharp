@@ -20,6 +20,15 @@ namespace DesignPatternsInCSharp.src.Builder {
 			Tomato = builder.Tomato;
 		}
 
+		public string ToString() {
+			string s = "Size: " + BurgerSize.ToString() + "\n"
+				+ "Cheese: " + Cheese + "\n"
+				+ "Lettuce: " + Lettuce + "\n"
+				+ "Tomato: " + Tomato + "\n";
+
+			return s;
+		}
+
 	}
 
 	class BurgerBuilder {
