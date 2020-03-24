@@ -38,18 +38,19 @@ namespace DesignPatternsInCSharp.src.Builder {
 			Pickles = builder.Pickles;
 		}
 
-		/* Returns a string that has each property of the
-		 * burger on it's own line.
+		/* Returns a string that Lists the size of the buger.
+		 * and a List of the toppings that are set to True
 		 */
 		public override string ToString() {
 			string s = "Size: " + BurgerSize.ToString() + "\n"
-				+ "Cheese: " + Cheese + "\n"
-				+ "Lettuce: " + Lettuce + "\n"
-				+ "Tomato: " + Tomato + "\n"
-				+ "Ketchup: " + Ketchup + "\n"
-				+ "Mustard: " + Mustard + "\n"
-				+ "Mayo: " + Mayo + "\n"
-				+ "Pickles: " + Pickles + "\n";
+				+ "Toppings: "
+				+ (Cheese ? "Cheese, " : "")
+				+ (Lettuce ? "Lettuce, " : "")
+				+ (Tomato ? "Tomato, " : "")
+				+ (Ketchup ? "Ketchup, " : "")
+				+ (Mustard ? "Mustard, " : "")
+				+ (Mayo ? "Mayo, " : "")
+				+ (Pickles ? "Pickles" : "") + "\n";
 
 			return s;
 		}
