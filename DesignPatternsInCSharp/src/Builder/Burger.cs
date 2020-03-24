@@ -8,6 +8,11 @@ namespace DesignPatternsInCSharp.src.Builder {
 	enum Size { small, medium, large}
 
 	class Burger {
+
+		/* Properties for a Burger.
+		 * Should not be able to mutate these Properties, creation of
+		 * burgers is delagated to a Builder instead.
+		 */
 		public Size BurgerSize { get; }
 		public bool Cheese { get; }
 		public bool Lettuce { get; }
@@ -17,6 +22,11 @@ namespace DesignPatternsInCSharp.src.Builder {
 		public bool Mayo { get; }
 		public bool Pickles { get; }
 
+		/* Constructor
+		 * Requires: BurgerBuilder
+		 * Sets the properties of this Burger to the corresponding
+		 * properties in the builder instance.
+		 */
 		public Burger(BurgerBuilder builder) {
 			BurgerSize = builder.BurgerSize;
 			Cheese = builder.Cheese;
@@ -26,9 +36,11 @@ namespace DesignPatternsInCSharp.src.Builder {
 			Mustard = builder.Mustard;
 			Mayo = builder.Mayo;
 			Pickles = builder.Pickles;
-
 		}
 
+		/* Returns a string that has each property of the
+		 * burger on it's own line.
+		 */
 		public override string ToString() {
 			string s = "Size: " + BurgerSize.ToString() + "\n"
 				+ "Cheese: " + Cheese + "\n"
@@ -45,15 +57,18 @@ namespace DesignPatternsInCSharp.src.Builder {
 	}
 
 	class BurgerBuilder {
-		public Size BurgerSize { get; set; }
-		public bool Cheese { get; set; }
-		public bool Lettuce { get; set; }
-		public bool Tomato { get; set; }
-		public bool Ketchup { get; set; }
-		public bool Mustard { get; set; }
-		public bool Mayo { get; set; }
-		public bool Pickles { get; set; }
+		public Size BurgerSize { get; set; } //Required
+		public bool Cheese { get; set; } //Optional
+		public bool Lettuce { get; set; } //Optional
+		public bool Tomato { get; set; } //Optional
+		public bool Ketchup { get; set; } //Optional
+		public bool Mustard { get; set; } //Optional
+		public bool Mayo { get; set; } //Optional
+		public bool Pickles { get; set; } //Optional
 
+		/* Consttructor for Builder
+		 * Size is only required parameter, sets other properties to false as default
+		 */
 		public BurgerBuilder(Size size) {
 			BurgerSize = size;
 			Cheese = false;
@@ -65,6 +80,8 @@ namespace DesignPatternsInCSharp.src.Builder {
 			Pickles = false;
 		}
 
+		// Builder methods, returns the instance of itself so you 
+		// can chain together method calls
 		public BurgerBuilder AddCheese() {
 			Cheese = true;
 			return this;
@@ -97,6 +114,7 @@ namespace DesignPatternsInCSharp.src.Builder {
 			return this;
 		}
 
+		//returns a new burger passing in the current instance
 		public Burger build() {
 			return new Burger(this);
 		}
